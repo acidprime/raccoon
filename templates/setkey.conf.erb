@@ -1,0 +1,6 @@
+#!/sbin/setkey -f
+# Flush the SAD and SPD
+flush;
+spdflush;
+spdadd <%= @wan_ip %>[l2tp] 0.0.0.0/0 udp -P out ipsec esp/transport//require;
+spdadd 0.0.0.0/0 <%= @wan_ip %>[l2tp] udp -P in ipsec esp/transport//require;
